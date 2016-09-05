@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <title>Project-wide Raw Data (Sort by Count)</title>
+        <link REL='stylesheet' TYPE='text/css' HREF='../css/Reports.css' />
+        <script TYPE="text/javascript" LANGUAGE="javascript" SRC="../js/ReportUtils_DwgStat.js"></script>
+        <script TYPE="text/javascript" LANGUAGE="javascript" FOR="window" EVENT="onload">
+			<!--
+            var tmpXmlDoc = makeRawCountTotalDom(top.xmlDataSource);
+            if (tmpXmlDoc) {
+			    xformByXsl(tmpXmlDoc, "../xsl/RawDataSortCount.xsl");
+			}
+			//-->
+        </script>
+    </head>
+    <body>
+        <p class="reportDesc">This report is a raw overall count of the object types that 
+            appear in the selected drawing files. It is sorted by Count, on a project-wide 
+            basis.</p>
+        <div ID="xslTarget"></div>
+    </body>
+</html>

@@ -1,0 +1,584 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C9B52572-4947-4AD7-86CE-EFB7A036FA9F}</ProjectGuid>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccProvider>
+    </SccProvider>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>
+    </ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>MgdDbg</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>MgdDbg</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <SccAuxPath>
+    </SccAuxPath>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug\</OutputPath>
+    <BaseAddress>285212672</BaseAddress>
+    <FileAlignment>4096</FileAlignment>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AcCoreMgd">
+      <HintPath>..\..\ObjectARX 2017\inc\AcCoreMgd.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="acdbmgd, Version=18.1.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ObjectARX 2017\inc\AcDbMgd.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="acmgd, Version=18.1.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\ObjectARX 2017\inc\AcMgd.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="PresentationCore">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="PresentationFramework">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App\App.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="App\AppContextMenu.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="App\AppDocReactor.cs" />
+    <Compile Include="App\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="App\TestCmds.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CompBuilder\CompBldr.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CompBuilder\CompBldrAnonBlkDef.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CompBuilder\CompBldrCurSpace.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CompBuilder\CompBldrNamedBlkDef.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CompBuilder\TransactionHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DwgStats\BlockCount.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DwgStats\ObjCount.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DwgStats\Report.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DwgStats\SymbolCount.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ObjTests\CategoryTests.cs" />
+    <Compile Include="ObjTests\DbTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ObjTests\Forms\Documents.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ObjTests\Forms\Documents.Designer.cs">
+      <DependentUpon>Documents.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ObjTests\Forms\ObjectDiff.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ObjTests\Forms\ObjectDiff.Designer.cs">
+      <DependentUpon>ObjectDiff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ObjTests\Forms\Objects.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ObjTests\Forms\Objects.Designer.cs">
+      <DependentUpon>Objects.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Prompts\SelectionSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Prompts\SelectionSet.Designer.cs">
+      <DependentUpon>SelectionSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ObjTests\MakeEntTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ObjTests\MakeSymTblRecTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ObjTests\ModifyEntTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ObjTests\QueryCurveTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ObjTests\QueryEntTests.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ObjTests\TestFramework\MgdDbgTestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ObjTests\TestFramework\MgdDbgTestFuncInfo.cs" />
+    <Compile Include="ObjTests\TestFramework\MgdDbgTestFuncs.cs" />
+    <Compile Include="Prompts\KeywordsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Prompts\PromptTestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Reactors\Events\DatabaseEvents.cs" />
+    <Compile Include="Reactors\Events\DatabaseObjEvents.cs" />
+    <Compile Include="Reactors\Events\DocumentEvents.cs" />
+    <Compile Include="Reactors\Events\DocumentMgrEvents.cs" />
+    <Compile Include="Reactors\Events\DynamicLinkerEvents.cs" />
+    <Compile Include="Reactors\Events\ApplicationEvents.cs" />
+    <Compile Include="Reactors\Events\EditorEvents.cs" />
+    <Compile Include="Reactors\Events\EventsBase.cs" />
+    <Compile Include="Reactors\Events\GraphicsSystemEvents.cs" />
+    <Compile Include="Reactors\Events\LayoutManagerEvents.cs" />
+    <Compile Include="Reactors\Events\PlotEvents.cs" />
+    <Compile Include="Reactors\Events\PublishEvents.cs" />
+    <Compile Include="Reactors\Forms\EventsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reactors\Forms\EventsForm.designer.cs">
+      <DependentUpon>EventsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reactors\Forms\Details.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reactors\Forms\Details.Designer.cs">
+      <DependentUpon>Details.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Snoop\CollectorExts\CollectorExt.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Snoop\CollectorExts\Colors.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Snoop\CollectorExts\DbMisc.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Snoop\CollectorExts\DbObject.cs" />
+    <Compile Include="Snoop\CollectorExts\EditorInput.cs" />
+    <Compile Include="Snoop\CollectorExts\Entity.cs" />
+    <Compile Include="Snoop\CollectorExts\Geometry.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Snoop\CollectorExts\GraphicsInterface.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Snoop\CollectorExts\GraphicsSystem.cs" />
+    <Compile Include="Snoop\CollectorExts\GraphNodes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Snoop\CollectorExts\LayerManager.cs" />
+    <Compile Include="Snoop\CollectorExts\Object.cs" />
+    <Compile Include="Snoop\CollectorExts\Plotting.cs" />
+    <Compile Include="Snoop\CollectorExts\Publish.cs" />
+    <Compile Include="Snoop\CollectorExts\RxObject.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Snoop\CollectorExts\SymbolTable.cs" />
+    <Compile Include="Snoop\Collectors\Collector.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Snoop\Collectors\CollectorEventArgs.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Snoop\Collectors\Objects.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Snoop\Collectors\XmlNode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Snoop\Data\Angle.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Snoop\Data\Bitmap.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Snoop\Data\Bool.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Snoop\Data\CategorySeparator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Snoop\Data\Class.cs" />
+    <Compile Include="Snoop\Data\ClassSeparator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Snoop\Data\Data.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Snoop\Data\Database.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Snoop\Data\Distance.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Snoop\Data\Double.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Snoop\Data\Enumerable.cs" />
+    <Compile Include="Snoop\Data\Exception.cs" />
+    <Compile Include="Snoop\Data\ExtDictId.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Snoop\Data\Icon.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Snoop\Data\Int.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Snoop\Data\Long.cs" />
+    <Compile Include="Snoop\Data\Object.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Snoop\Data\ObjectCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Snoop\Data\ObjectId.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Snoop\Data\ObjectIdCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Snoop\Data\ObjectToString.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Snoop\Data\ObjectUnknown.cs" />
+    <Compile Include="Snoop\Data\Point2d.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Snoop\Data\Point3d.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Snoop\Data\ReferencedBy.cs" />
+    <Compile Include="Snoop\Data\References.cs" />
+    <Compile Include="Snoop\Data\Scale2d.cs" />
+    <Compile Include="Snoop\Data\Scale3d.cs" />
+    <Compile Include="Snoop\Data\SelectionSet.cs" />
+    <Compile Include="Snoop\Data\String.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Snoop\Data\Vector2d.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Snoop\Data\Vector3d.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Snoop\Data\Xml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Snoop\Forms\Bitmap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Snoop\Forms\ClassesComp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Snoop\Forms\Database.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Snoop\Forms\DBObjects.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Snoop\Forms\Editor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Snoop\Forms\Editor.Designer.cs">
+      <DependentUpon>Editor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ObjTests\Forms\EntityDiff.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Snoop\Forms\ExtDict.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Snoop\Forms\GenericPropGrid.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Snoop\Forms\Icon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Snoop\Forms\Objects.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Snoop\Forms\ObjIdSets.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Snoop\Forms\References.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Snoop\Forms\XrefGraph.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Snoop\ObjIdSet.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Snoop\Utils.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Throwaway\TestForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Throwaway\TestTabForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utils\AcadUi.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utils\ColumnSorterStringUI.cs" />
+    <Compile Include="Utils\Db.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utils\Dialog.cs" />
+    <Compile Include="Utils\Ge.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utils\JigPline.cs" />
+    <Compile Include="Utils\ObjectCompare.cs">
+    </Compile>
+    <Compile Include="Utils\ReferenceFiler.cs" />
+    <Compile Include="Utils\SymTbl.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Xml\Forms\Dom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <EmbeddedResource Include="ObjTests\Forms\Documents.resx">
+      <DependentUpon>Documents.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ObjTests\Forms\ObjectDiff.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>ObjectDiff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ObjTests\Forms\Objects.resx">
+      <DependentUpon>Objects.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Prompts\SelectionSet.resx">
+      <SubType>Designer</SubType>
+      <DependentUpon>SelectionSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ObjTests\TestFramework\MgdDbgTestForm.resx">
+      <DependentUpon>MgdDbgTestForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Prompts\KeywordsForm.resx">
+      <DependentUpon>KeywordsForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Prompts\PromptTestForm.resx">
+      <DependentUpon>PromptTestForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reactors\Forms\EventsForm.resx">
+      <DependentUpon>EventsForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reactors\Forms\Details.resx">
+      <DependentUpon>Details.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Snoop\Forms\Bitmap.resx">
+      <DependentUpon>Bitmap.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Snoop\Forms\ClassesComp.resx">
+      <DependentUpon>ClassesComp.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Snoop\Forms\Database.resx">
+      <DependentUpon>Database.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Snoop\Forms\DBObjects.resx">
+      <DependentUpon>DBObjects.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Snoop\Forms\Editor.resx">
+      <DependentUpon>Editor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ObjTests\Forms\EntityDiff.resx">
+      <DependentUpon>EntityDiff.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Snoop\Forms\GenericPropGrid.resx">
+      <DependentUpon>GenericPropGrid.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Snoop\Forms\Icon.resx">
+      <DependentUpon>Icon.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Snoop\Forms\Objects.resx">
+      <DependentUpon>Objects.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Snoop\Forms\ObjIdSets.resx">
+      <DependentUpon>ObjIdSets.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Snoop\Forms\XrefGraph.resx">
+      <DependentUpon>XrefGraph.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Throwaway\TestForm.resx">
+      <DependentUpon>TestForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Throwaway\TestTabForm.resx">
+      <DependentUpon>TestTabForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Xml\Forms\Dom.resx">
+      <DependentUpon>Dom.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Content Include="res\COPY.ico" />
+    <Content Include="res\ImageTreeCategory.bmp" />
+    <Content Include="res\ImageTreeClass.bmp" />
+    <Content Include="res\ImageTreeTest.bmp" />
+    <Content Include="res\ImageTreeXmlAttribute.bmp" />
+    <Content Include="res\ImageTreeXmlCdata.bmp" />
+    <Content Include="res\ImageTreeXmlComment.bmp" />
+    <Content Include="res\ImageTreeXmlDeclaration.bmp" />
+    <Content Include="res\ImageTreeXmlDoc.bmp" />
+    <Content Include="res\ImageTreeXmlDocType.bmp" />
+    <Content Include="res\ImageTreeXmlElement.bmp" />
+    <Content Include="res\ImageTreeXmlEntity.bmp" />
+    <Content Include="res\ImageTreeXmlFragment.bmp" />
+    <Content Include="res\ImageTreeXmlProcInstr.bmp" />
+    <Content Include="res\ImageTreeXmlReference.bmp" />
+    <Content Include="res\ImageTreeXmlText.bmp" />
+    <Content Include="res\ImageTreeXmlUnknown.bmp" />
+    <Content Include="res\Preview.ico" />
+    <Content Include="res\Print.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>
