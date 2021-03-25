@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
   <PropertyGroup>
     <ProjectType>Local</ProjectType>
     <ProductVersion>9.0.30729</ProductVersion>
@@ -37,7 +37,7 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <SccAuxPath>
     </SccAuxPath>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -67,18 +67,56 @@
     <CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AcCoreMgd">
-      <HintPath>..\..\ObjectARX 2017\inc\AcCoreMgd.dll</HintPath>
+    <Reference Include="AcCoreMgd, Version=24.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\AutoCAD.NET.Core.24.0.0\lib\net47\AcCoreMgd.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="acdbmgd, Version=18.1.0.0, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ObjectARX 2017\inc\AcDbMgd.dll</HintPath>
+    <Reference Include="AcCui, Version=24.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\AutoCAD.NET.24.0.0\lib\net47\AcCui.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="acmgd, Version=18.1.0.0, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\ObjectARX 2017\inc\AcMgd.dll</HintPath>
+    <Reference Include="AcDbMgd, Version=24.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\AutoCAD.NET.Model.24.0.0\lib\net47\AcDbMgd.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="acdbmgdbrep, Version=24.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\AutoCAD.NET.Model.24.0.0\lib\net47\acdbmgdbrep.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="AcDx, Version=24.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\AutoCAD.NET.24.0.0\lib\net47\AcDx.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="AcMgd, Version=24.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\AutoCAD.NET.24.0.0\lib\net47\AcMgd.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="AcMr, Version=24.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\AutoCAD.NET.24.0.0\lib\net47\AcMr.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="AcSeamless, Version=24.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>packages\AutoCAD.NET.24.0.0\lib\net47\AcSeamless.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="AcTcMgd, Version=24.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\AutoCAD.NET.24.0.0\lib\net47\AcTcMgd.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="AcWindows, Version=24.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\AutoCAD.NET.24.0.0\lib\net47\AcWindows.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="AdUIMgd, Version=24.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\AutoCAD.NET.24.0.0\lib\net47\AdUIMgd.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="AdUiPalettes, Version=24.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\AutoCAD.NET.24.0.0\lib\net47\AdUiPalettes.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="AdWindows, Version=3.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\AutoCAD.NET.24.0.0\lib\net47\AdWindows.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="PresentationCore">
@@ -573,6 +611,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

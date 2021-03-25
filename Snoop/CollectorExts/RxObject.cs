@@ -291,7 +291,6 @@ namespace MgdDbg.Snoop.CollectorExts {
             data.Add(new Snoop.Data.Point3d("Extmax", db.Extmax));
             data.Add(new Snoop.Data.Point3d("Extmin", db.Extmin));
             data.Add(new Snoop.Data.Double("Facetres", db.Facetres));
-            data.Add(new Snoop.Data.Object("File dependency manager", db.FileDependencyManager));
             data.Add(new Snoop.Data.Distance("Filletrad", db.Filletrad));
             data.Add(new Snoop.Data.Bool("Fillmode", db.Fillmode));
 
