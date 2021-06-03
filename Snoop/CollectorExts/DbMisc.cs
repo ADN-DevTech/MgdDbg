@@ -164,12 +164,6 @@ namespace MgdDbg.Snoop.CollectorExts
                 return;
             }
 
-            FileDependencyManager fileDepMgr = e.ObjToSnoop as FileDependencyManager;
-            if (fileDepMgr != null) {
-                Stream(snoopCollector.Data(), fileDepMgr);
-                return;
-            }
-
             IdMappingEventArgs idMapArgs = e.ObjToSnoop as IdMappingEventArgs;
             if (idMapArgs != null) {
                 Stream(snoopCollector.Data(), idMapArgs);
@@ -398,11 +392,6 @@ namespace MgdDbg.Snoop.CollectorExts
 
             if (e.ObjToSnoop is DBDictionaryEntry) {
                 Stream(snoopCollector.Data(), (DBDictionaryEntry)e.ObjToSnoop);
-                return;
-            }
-
-            if (e.ObjToSnoop is FileDependencyInfo) {
-                Stream(snoopCollector.Data(), (FileDependencyInfo)e.ObjToSnoop);
                 return;
             }
 
@@ -1070,15 +1059,6 @@ namespace MgdDbg.Snoop.CollectorExts
         }
 
         private void
-        Stream(ArrayList data, FileDependencyManager fileDepMgr)
-        {
-            data.Add(new Snoop.Data.ClassSeparator(typeof(FileDependencyManager)));
-
-            data.Add(new Snoop.Data.Int("Count entries", fileDepMgr.CountEntries));
-            data.Add(new Snoop.Data.Int("Iterator next", fileDepMgr.IteratorNext));            
-        }
-
-        private void
         Stream(ArrayList data, IdMappingEventArgs idMapArgs)
         {
             data.Add(new Snoop.Data.ClassSeparator(typeof(IdMappingEventArgs)));
@@ -1404,25 +1384,6 @@ namespace MgdDbg.Snoop.CollectorExts
 
             data.Add(new Snoop.Data.String("Key", dbDictEntry.Key));
             data.Add(new Snoop.Data.ObjectId("Value", dbDictEntry.Value));
-        }
-
-        private void
-        Stream(ArrayList data, FileDependencyInfo depInfo)
-        {
-            data.Add(new Snoop.Data.ClassSeparator(typeof(FileDependencyInfo)));
-
-            data.Add(new Snoop.Data.String("Feature", depInfo.Feature));
-            data.Add(new Snoop.Data.String("File name", depInfo.FileName));
-            data.Add(new Snoop.Data.Int("File size", depInfo.FileSize));
-            data.Add(new Snoop.Data.String("Fingerprint guid", depInfo.FingerprintGuid));
-            data.Add(new Snoop.Data.String("Found path", depInfo.FoundPath));
-            data.Add(new Snoop.Data.String("Full filename", depInfo.FullFileName));
-            data.Add(new Snoop.Data.Int("Index", depInfo.Index));
-            data.Add(new Snoop.Data.Bool("Is affects graphics", depInfo.IsAffectsGraphics));
-            data.Add(new Snoop.Data.Bool("Is modified", depInfo.IsModified));
-            data.Add(new Snoop.Data.Int("Reference count", depInfo.ReferenceCount));
-            data.Add(new Snoop.Data.Int("Time  stamp", depInfo.TimeStamp));
-            data.Add(new Snoop.Data.String("Version guid", depInfo.VersionGuid));
         }
 
         private void

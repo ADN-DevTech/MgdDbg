@@ -27,116 +27,117 @@ using System.Text;
 
 using Autodesk.AutoCAD.ApplicationServices;
 
-namespace MgdDbg.Reactors.Events {
+namespace MgdDbg.Reactors.Events
+{
 
-    public class ApplicationEvents : EventsBase {
+	public class ApplicationEvents : EventsBase
+	{
 
-        public
-        ApplicationEvents()
-        {
-        }
+		public
+		ApplicationEvents()
+		{
+		}
 
-        protected override void
-        EnableEventsImp()
-        {
-            Utils.AcadUi.PrintToCmdLine("\nApplication Events Turned On ...\n");
+		protected override void
+		EnableEventsImp()
+		{
+			Utils.AcadUi.PrintToCmdLine("\nApplication Events Turned On ...\n");
 
-            Application.BeginQuit += new EventHandler(event_BeginQuit);
-            Application.DisplayingCustomizeDialog += new TabbedDialogEventHandler(event_DisplayingCustomizeDialog);
-            Application.DisplayingDraftingSettingsDialog += new TabbedDialogEventHandler(event_DisplayingDraftingSettingsDialog);
-            Application.DisplayingOptionDialog += new TabbedDialogEventHandler(event_DisplayingOptionDialog);
-            Application.QuitAborted += new EventHandler(event_QuitAborted);
-            Application.QuitWillStart += new EventHandler(event_QuitWillStart);
-            Application.SystemVariableChanged += new SystemVariableChangedEventHandler(event_SystemVariableChanged);
-            Application.SystemVariableChanging += new SystemVariableChangingEventHandler(event_SystemVariableChanging);
-        }
+			Application.BeginQuit += Application_BeginQuit;
+			Application.DisplayingCustomizeDialog += new TabbedDialogEventHandler(event_DisplayingCustomizeDialog);
+			Application.DisplayingDraftingSettingsDialog += new TabbedDialogEventHandler(event_DisplayingDraftingSettingsDialog);
+			Application.DisplayingOptionDialog += new TabbedDialogEventHandler(event_DisplayingOptionDialog);
+			Application.QuitAborted += new EventHandler(event_QuitAborted);
+			Application.QuitWillStart += new EventHandler(event_QuitWillStart);
+			Application.SystemVariableChanged += new SystemVariableChangedEventHandler(event_SystemVariableChanged);
+			Application.SystemVariableChanging += new SystemVariableChangingEventHandler(event_SystemVariableChanging);
+		}
 
-        protected override void
-        DisableEventsImp()
-        {
-            Utils.AcadUi.PrintToCmdLine("\nApplication Events Turned Off ...\n");
+		private void Application_BeginQuit(object sender, BeginQuitEventArgs e)
+		{
+			PrintEventMessage("Begin Quit");
+		}
 
-            Application.BeginQuit -= new EventHandler(event_BeginQuit);
-            Application.DisplayingCustomizeDialog -= new TabbedDialogEventHandler(event_DisplayingCustomizeDialog);
-            Application.DisplayingDraftingSettingsDialog -= new TabbedDialogEventHandler(event_DisplayingDraftingSettingsDialog);
-            Application.DisplayingOptionDialog -= new TabbedDialogEventHandler(event_DisplayingOptionDialog);
-            Application.QuitAborted -= new EventHandler(event_QuitAborted);
-            Application.QuitWillStart -= new EventHandler(event_QuitWillStart);
-            Application.SystemVariableChanged -= new SystemVariableChangedEventHandler(event_SystemVariableChanged);
-            Application.SystemVariableChanging -= new SystemVariableChangingEventHandler(event_SystemVariableChanging);
-        }
+		protected override void
+		  DisableEventsImp()
+		{
+			Utils.AcadUi.PrintToCmdLine("\nApplication Events Turned Off ...\n");
 
-
-        private void
-        event_BeginQuit(object sender, EventArgs e)
-        {
-            PrintEventMessage("Begin Quit");
-        }
-
-        private void
-        event_DisplayingCustomizeDialog(object sender, TabbedDialogEventArgs e)
-        {
-            PrintEventMessage("Displaying Customize Dialog");
-        }
-
-        private void
-        event_DisplayingDraftingSettingsDialog(object sender, TabbedDialogEventArgs e)
-        {
-            PrintEventMessage("Displaying Drafting Settings Dialog");
-        }
-
-        private void
-        event_DisplayingOptionDialog(object sender, TabbedDialogEventArgs e)
-        {
-            PrintEventMessage("Displaying Option Dialog");
-        }
-
-        private void
-        event_QuitAborted(object sender, EventArgs e)
-        {
-            PrintEventMessage("Quit Aborted");
-        }
-
-        private void
-        event_QuitWillStart(object sender, EventArgs e)
-        {
-            PrintEventMessage("Quit Will Start");
-        }
-
-        private void
-        event_SystemVariableChanged(object sender, SystemVariableChangedEventArgs e)
-        {
-            if (e.Changed)
-                PrintEventMessage("System Var Changed", e.Name);
-            else
-                PrintEventMessage("System Var Not Changed Successfully", e.Name);
-        }
-
-        private void
-        event_SystemVariableChanging(object sender, SystemVariableChangingEventArgs e)
-        {
-            PrintEventMessage("System Var Changing", e.Name);
-        }
+			Application.BeginQuit -= Application_BeginQuit;
+			Application.DisplayingCustomizeDialog -= new TabbedDialogEventHandler(event_DisplayingCustomizeDialog);
+			Application.DisplayingDraftingSettingsDialog -= new TabbedDialogEventHandler(event_DisplayingDraftingSettingsDialog);
+			Application.DisplayingOptionDialog -= new TabbedDialogEventHandler(event_DisplayingOptionDialog);
+			Application.QuitAborted -= new EventHandler(event_QuitAborted);
+			Application.QuitWillStart -= new EventHandler(event_QuitWillStart);
+			Application.SystemVariableChanged -= new SystemVariableChangedEventHandler(event_SystemVariableChanged);
+			Application.SystemVariableChanging -= new SystemVariableChangingEventHandler(event_SystemVariableChanging);
+		}
 
 
+		private void
+		event_DisplayingCustomizeDialog(object sender, TabbedDialogEventArgs e)
+		{
+			PrintEventMessage("Displaying Customize Dialog");
+		}
 
-        #region Print Abstraction
+		private void
+		event_DisplayingDraftingSettingsDialog(object sender, TabbedDialogEventArgs e)
+		{
+			PrintEventMessage("Displaying Drafting Settings Dialog");
+		}
 
-        private void
-        PrintEventMessage(string eventStr)
-        {
-            string printString = string.Format("\n[App Event] : {0,-25}", eventStr);
-            Utils.AcadUi.PrintToCmdLine(printString);
-        }
+		private void
+		event_DisplayingOptionDialog(object sender, TabbedDialogEventArgs e)
+		{
+			PrintEventMessage("Displaying Option Dialog");
+		}
 
-        private void
-        PrintEventMessage(string eventStr, string msg)
-        {
-            string printString = string.Format("\n[App Event] : {0,-25} : {1}", eventStr, msg);
-            Utils.AcadUi.PrintToCmdLine(printString);
-        }
+		private void
+		event_QuitAborted(object sender, EventArgs e)
+		{
+			PrintEventMessage("Quit Aborted");
+		}
 
-        #endregion
+		private void
+		event_QuitWillStart(object sender, EventArgs e)
+		{
+			PrintEventMessage("Quit Will Start");
+		}
 
-    }
+		private void
+		event_SystemVariableChanged(object sender, SystemVariableChangedEventArgs e)
+		{
+			if (e.Changed)
+				PrintEventMessage("System Var Changed", e.Name);
+			else
+				PrintEventMessage("System Var Not Changed Successfully", e.Name);
+		}
+
+		private void
+		event_SystemVariableChanging(object sender, SystemVariableChangingEventArgs e)
+		{
+			PrintEventMessage("System Var Changing", e.Name);
+		}
+
+
+
+		#region Print Abstraction
+
+		private void
+		PrintEventMessage(string eventStr)
+		{
+			string printString = string.Format("\n[App Event] : {0,-25}", eventStr);
+			Utils.AcadUi.PrintToCmdLine(printString);
+		}
+
+		private void
+		PrintEventMessage(string eventStr, string msg)
+		{
+			string printString = string.Format("\n[App Event] : {0,-25} : {1}", eventStr, msg);
+			Utils.AcadUi.PrintToCmdLine(printString);
+		}
+
+		#endregion
+
+	}
 }
