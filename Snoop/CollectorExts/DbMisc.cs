@@ -466,7 +466,12 @@ namespace MgdDbg.Snoop.CollectorExts
                     dxfCodeStr = string.Format("{0:d}    (short)", typeCode);
                     data.Add(new Snoop.Data.Int(dxfCodeStr, (short)tmpVal.Value));
                 }
-                else if ((typeCode >= 90) && (typeCode <= 99)) {
+                else if (typeCode == 90)
+                {
+                    dxfCodeStr = string.Format("{0:d}    (int)", typeCode);
+                    data.Add(new Snoop.Data.Int(dxfCodeStr, (int)tmpVal.Value));
+                }
+                else if ((typeCode > 90) && (typeCode <= 99)) {
                     dxfCodeStr = string.Format("{0:d}    (long)", typeCode);
                     data.Add(new Snoop.Data.Int(dxfCodeStr, (int)(long)tmpVal.Value));
                 }
