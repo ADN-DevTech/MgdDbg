@@ -63,6 +63,26 @@ namespace MgdDbg.Snoop.CollectorExts {
         #region Entity
         // main branch for anything derived from Entity (AcDbEntity)
 
+        private void 
+        TryStreamProperty<T>(ArrayList data, Func<T> getProperty, string propertyName) where T: Snoop.Data.Data
+        {
+            try
+            {
+                data.Add(getProperty());
+            }
+            catch (Autodesk.AutoCAD.Runtime.Exception e)
+            {
+                if (e.ErrorStatus == Autodesk.AutoCAD.Runtime.ErrorStatus.NotApplicable)
+                    data.Add(new Snoop.Data.Exception(propertyName, e));
+                else if (e.ErrorStatus == Autodesk.AutoCAD.Runtime.ErrorStatus.InvalidExtents)
+                    data.Add(new Snoop.Data.Exception(propertyName, e));
+                else if (e.ErrorStatus == Autodesk.AutoCAD.Runtime.ErrorStatus.NullExtents)
+                    data.Add(new Snoop.Data.Exception(propertyName, e));
+                else
+                    throw e;
+            }
+        }
+
         private void
         Stream (ArrayList data, AcDb.Entity ent)
         {
@@ -94,27 +114,9 @@ namespace MgdDbg.Snoop.CollectorExts {
             data.Add(new Snoop.Data.String("Collision type", ent.CollisionType.ToString()));
             
                 // the following functions only work in some cases
-            try {
-                data.Add(new Snoop.Data.Object("Geom extents", ent.GeometricExtents));
-            }
-            catch (Autodesk.AutoCAD.Runtime.Exception e) {
-                if (e.ErrorStatus == Autodesk.AutoCAD.Runtime.ErrorStatus.InvalidExtents)
-                    data.Add(new Snoop.Data.Exception("Geom extents", e));
-                else if (e.ErrorStatus == Autodesk.AutoCAD.Runtime.ErrorStatus.NullExtents)
-                    data.Add(new Snoop.Data.Exception("Geom extents", e));
-                else
-                    throw e;
-            }
+            TryStreamProperty(data, () => new Snoop.Data.Object("Geom extents", ent.GeometricExtents), "Geom extents");
 
-            try {
-                data.Add(new Snoop.Data.Object("Compound object transform", ent.CompoundObjectTransform));
-            }
-            catch (Autodesk.AutoCAD.Runtime.Exception e) {
-                if (e.ErrorStatus == Autodesk.AutoCAD.Runtime.ErrorStatus.NotApplicable)
-                    data.Add(new Snoop.Data.Exception("Compound object transform", e));
-                else
-                    throw e;
-            }
+            TryStreamProperty(data, () => new Snoop.Data.Object("Compound object transform", ent.CompoundObjectTransform), "Compound object transform");
   
             // branch to all known major sub-classes
 
@@ -333,38 +335,13 @@ namespace MgdDbg.Snoop.CollectorExts {
 
             // Start point and end point are not applicable for some types of 
             // curves (e.g., Ray, Xline)
-            try {
-                data.Add(new Snoop.Data.Point3d("Start point", crv.StartPoint));
-            }
-            catch (Autodesk.AutoCAD.Runtime.Exception e) {
-                if (e.ErrorStatus == Autodesk.AutoCAD.Runtime.ErrorStatus.NotApplicable)
-                    data.Add(new Snoop.Data.Exception("Start point", e));
-                else
-                    throw e;
-            }
-
-            try {
-                data.Add(new Snoop.Data.Point3d("End point", crv.EndPoint));
-            }
-            catch (Autodesk.AutoCAD.Runtime.Exception e) {
-                if (e.ErrorStatus == Autodesk.AutoCAD.Runtime.ErrorStatus.NotApplicable)
-                    data.Add(new Snoop.Data.Exception("End point", e));
-                else
-                    throw e;
-            }
+            // the following is only valid in some cases
+            TryStreamProperty(data, () => new Snoop.Data.Point3d("Start point", crv.StartPoint), "Start point");
+            TryStreamProperty(data, () => new Snoop.Data.Point3d("End point", crv.EndPoint), "End point");
 
             data.Add(new Snoop.Data.Bool("Is periodic", crv.IsPeriodic));
 
-            // the following is only valid in some cases
-            try {
-                data.Add(new Snoop.Data.Object("Spline", crv.Spline));
-            }
-            catch (Autodesk.AutoCAD.Runtime.Exception e) {
-                if (e.ErrorStatus == Autodesk.AutoCAD.Runtime.ErrorStatus.NotApplicable)
-                    data.Add(new Snoop.Data.Exception("Spline", e));
-                else
-                    throw e;
-            }
+            TryStreamProperty(data, () => new Snoop.Data.Object("Spline", crv.Spline), "Spline");
 
             // branch to all known major sub-classes
             Line line = crv as Line;
@@ -628,49 +605,15 @@ namespace MgdDbg.Snoop.CollectorExts {
             data.Add(new Snoop.Data.ClassSeparator(typeof(Spline)));
 
             data.Add(new Snoop.Data.Int("Degree", spline.Degree));            
-            
-            try {
-                data.Add(new Snoop.Data.Vector3d("Start fit tangent", spline.StartFitTangent));
-            }
-            catch (Autodesk.AutoCAD.Runtime.Exception e) {
-                if (e.ErrorStatus == Autodesk.AutoCAD.Runtime.ErrorStatus.NotApplicable)
-                    data.Add(new Snoop.Data.Exception("Start fit tangent", e));
-                else
-                    throw e;
-            }
 
-            try {
-                data.Add(new Snoop.Data.Vector3d("End fit tangent", spline.EndFitTangent));
-            }
-            catch (Autodesk.AutoCAD.Runtime.Exception e){
-                if (e.ErrorStatus == Autodesk.AutoCAD.Runtime.ErrorStatus.NotApplicable)
-                    data.Add(new Snoop.Data.Exception("End fit tangent", e));
-                else
-                    throw e;
-            }
+            TryStreamProperty(data, () => new Snoop.Data.Vector3d("Start fit tangent", spline.StartFitTangent), "Start fit tangent");
+            TryStreamProperty(data, () => new Snoop.Data.Vector3d("End fit tangent", spline.EndFitTangent), "End fit tangent");
             
             data.Add(new Snoop.Data.Bool("Has fit data", spline.HasFitData));
 
-            try {
-                data.Add(new Snoop.Data.Object("Fit data", spline.FitData));
-            }
-            catch (Autodesk.AutoCAD.Runtime.Exception e) {
-                if (e.ErrorStatus == Autodesk.AutoCAD.Runtime.ErrorStatus.NotApplicable)
-                    data.Add(new Snoop.Data.Exception("Fit data", e));
-                else
-                    throw e;
-            }
-
-            try {
-                data.Add(new Snoop.Data.Double("Fit tolerance", spline.FitTolerance));
-            }
-            catch (Autodesk.AutoCAD.Runtime.Exception e) {
-                if (e.ErrorStatus == Autodesk.AutoCAD.Runtime.ErrorStatus.NotApplicable)
-                    data.Add(new Snoop.Data.Exception("Fit tolerance", e));
-                else
-                    throw e;
-            }
-
+            TryStreamProperty(data, () => new Snoop.Data.Object("Fit data", spline.FitData), "Fit data");
+            TryStreamProperty(data, () => new Snoop.Data.Double("Fit tolerance", spline.FitTolerance), "Fit tolerance");
+            
             data.Add(new Snoop.Data.Object("Nurbs data", spline.NurbsData));
             data.Add(new Snoop.Data.Bool("Is null", spline.IsNull));
             data.Add(new Snoop.Data.Bool("Is rational", spline.IsRational));
@@ -962,15 +905,7 @@ namespace MgdDbg.Snoop.CollectorExts {
                 data.Add(new Snoop.Data.ObjectToString("Background fill color", mtext.BackgroundFillColor));
             }
             
-            try {
-                data.Add(new Snoop.Data.Double("Background scale factor", mtext.BackgroundScaleFactor));
-            }
-            catch (Autodesk.AutoCAD.Runtime.Exception e) {
-                if (e.ErrorStatus == Autodesk.AutoCAD.Runtime.ErrorStatus.NotApplicable)
-                    data.Add(new Snoop.Data.Exception("Background scale factor", e));
-                else
-                    throw e;
-            }
+            TryStreamProperty(data, () => new Snoop.Data.Double("Background scale factor", mtext.BackgroundScaleFactor), "Background scale factor");
 
             data.Add(new Snoop.Data.Object("Background transparency", mtext.Transparency));
 
