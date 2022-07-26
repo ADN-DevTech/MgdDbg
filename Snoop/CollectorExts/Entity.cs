@@ -78,6 +78,8 @@ namespace MgdDbg.Snoop.CollectorExts {
                     data.Add(new Snoop.Data.Exception(propertyName, e));
                 else if (e.ErrorStatus == Autodesk.AutoCAD.Runtime.ErrorStatus.NullExtents)
                     data.Add(new Snoop.Data.Exception(propertyName, e));
+                else if (e.ErrorStatus == Autodesk.AutoCAD.Runtime.ErrorStatus.InvalidContext)
+                    data.Add(new Snoop.Data.Exception(propertyName, e));
                 else
                     throw e;
             }
@@ -837,7 +839,7 @@ namespace MgdDbg.Snoop.CollectorExts {
             data.Add(new Snoop.Data.Object("Block color", mleader.BlockColor));
             data.Add(new Snoop.Data.String("Block connection type", mleader.BlockConnectionType.ToString()));
             data.Add(new Snoop.Data.ObjectId("Block content Id", mleader.BlockContentId));
-            data.Add(new Snoop.Data.Point3d("Block position", mleader.BlockPosition));
+            TryStreamProperty(data, () => new Snoop.Data.Point3d("Block position", mleader.BlockPosition), "Block position");
             data.Add(new Snoop.Data.Double("Block rotation", mleader.BlockRotation));
             data.Add(new Snoop.Data.Scale3d("Block scale", mleader.BlockScale));
             data.Add(new Snoop.Data.String("Content type", mleader.ContentType.ToString()));
@@ -863,7 +865,7 @@ namespace MgdDbg.Snoop.CollectorExts {
             data.Add(new Snoop.Data.Double("Text height", mleader.TextHeight));
             data.Add(new Snoop.Data.Point3d("Text location", mleader.TextLocation));
             data.Add(new Snoop.Data.ObjectId("Text style Id", mleader.TextStyleId));
-            data.Add(new Snoop.Data.Point3d("Tolerance location", mleader.ToleranceLocation));           
+            TryStreamProperty(data, () => new Snoop.Data.Point3d("Tolerance location", mleader.ToleranceLocation), "Tolerance location");
         }
 
         private void
