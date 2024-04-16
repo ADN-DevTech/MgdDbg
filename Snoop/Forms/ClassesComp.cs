@@ -242,23 +242,23 @@ namespace MgdDbg.Snoop.Forms
                 /// (TBD: Somehow the assembly names for System, System.Xml etc are not working. 
                 ///  So for now I am using hard coded file names. Do away later. This works for now.
                 /// jai 02.23.06)
-                System.Reflection.Assembly.ReflectionOnlyLoadFrom("C:\\WINDOWS\\Microsoft.NET\\Framework\\v2.0.50727\\System.Drawing.dll");
-                System.Reflection.Assembly.ReflectionOnlyLoadFrom("C:\\WINDOWS\\Microsoft.NET\\Framework\\v2.0.50727\\System.Windows.Forms.dll");
-                System.Reflection.Assembly.ReflectionOnlyLoadFrom("C:\\WINDOWS\\Microsoft.NET\\Framework\\v2.0.50727\\System.Configuration.dll");
-                System.Reflection.Assembly.ReflectionOnlyLoadFrom("C:\\WINDOWS\\Microsoft.NET\\Framework\\v2.0.50727\\System.Xml.dll");
-                System.Reflection.Assembly.ReflectionOnlyLoadFrom("C:\\WINDOWS\\Microsoft.NET\\Framework\\v2.0.50727\\System.dll");
+                //System.Reflection.Assembly.ReflectionOnlyLoadFrom("C:\\WINDOWS\\Microsoft.NET\\Framework\\v2.0.50727\\System.Drawing.dll");
+                //System.Reflection.Assembly.ReflectionOnlyLoadFrom("C:\\WINDOWS\\Microsoft.NET\\Framework\\v2.0.50727\\System.Windows.Forms.dll");
+                //System.Reflection.Assembly.ReflectionOnlyLoadFrom("C:\\WINDOWS\\Microsoft.NET\\Framework\\v2.0.50727\\System.Configuration.dll");
+                //System.Reflection.Assembly.ReflectionOnlyLoadFrom("C:\\WINDOWS\\Microsoft.NET\\Framework\\v2.0.50727\\System.Xml.dll");
+                //System.Reflection.Assembly.ReflectionOnlyLoadFrom("C:\\WINDOWS\\Microsoft.NET\\Framework\\v2.0.50727\\System.dll");
 
-                System.Reflection.Assembly assembly1 = System.Reflection.Assembly.ReflectionOnlyLoad("mscorlib");
-                System.Reflection.Assembly assembly2 = System.Reflection.Assembly.ReflectionOnlyLoad("acmgd");
-                System.Reflection.Assembly assembly3 = System.Reflection.Assembly.ReflectionOnlyLoad("acdbmgd");
-                System.Reflection.Assembly assembly4 = System.Reflection.Assembly.ReflectionOnlyLoadFrom("C:\\Kyoto\\bin\\debug\\AecBaseMgd.dll");
-                System.Reflection.Assembly assembly5 = System.Reflection.Assembly.ReflectionOnlyLoadFrom("C:\\Kyoto\\bin\\debug\\AecArchMgd.dll");
+                //System.Reflection.Assembly assembly1 = System.Reflection.Assembly.ReflectionOnlyLoad("mscorlib");
+                //System.Reflection.Assembly assembly2 = System.Reflection.Assembly.ReflectionOnlyLoad("acmgd");
+                //System.Reflection.Assembly assembly3 = System.Reflection.Assembly.ReflectionOnlyLoad("acdbmgd");
+                //System.Reflection.Assembly assembly4 = System.Reflection.Assembly.ReflectionOnlyLoadFrom("C:\\Kyoto\\bin\\debug\\AecBaseMgd.dll");
+                //System.Reflection.Assembly assembly5 = System.Reflection.Assembly.ReflectionOnlyLoadFrom("C:\\Kyoto\\bin\\debug\\AecArchMgd.dll");
 
-                m_classArray.AddRange(assembly1.GetTypes());
-                m_classArray.AddRange(assembly2.GetTypes());
-                m_classArray.AddRange(assembly3.GetTypes());
-                m_classArray.AddRange(assembly4.GetTypes());
-                m_classArray.AddRange(assembly5.GetTypes());
+                //m_classArray.AddRange(assembly1.GetTypes());
+                //m_classArray.AddRange(assembly2.GetTypes());
+                //m_classArray.AddRange(assembly3.GetTypes());
+                //m_classArray.AddRange(assembly4.GetTypes());
+                //m_classArray.AddRange(assembly5.GetTypes());
 
                 /// Currently only classes are being considered and the rest of the types
                 /// (ex. Value Types) are being thrown away. However, something like 

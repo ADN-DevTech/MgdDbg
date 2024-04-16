@@ -252,7 +252,7 @@ namespace MgdDbg.Test
                 }
                 catch (Autodesk.AutoCAD.Runtime.Exception x) {
                     if (x.ErrorStatus != Autodesk.AutoCAD.Runtime.ErrorStatus.UnknownHandle) {
-                        throw x;
+                        throw;
                     }
                 }
             }

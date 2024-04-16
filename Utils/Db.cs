@@ -478,7 +478,7 @@ namespace MgdDbg.Utils
             {
                 if (x.ErrorStatus != Autodesk.AutoCAD.Runtime.ErrorStatus.UnknownHandle)
                 {
-                    throw x;
+                    throw ;
                 }
             }
             return id;

@@ -381,7 +381,7 @@ namespace MgdDbg.Snoop.CollectorExts {
                     if (e.ErrorStatus == Autodesk.AutoCAD.Runtime.ErrorStatus.NotApplicable)
                         data.Add(new Snoop.Data.Exception("Text at", e));
                     else
-                        throw e;
+                        throw;
                 }
             }
         }

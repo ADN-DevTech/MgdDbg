@@ -45,9 +45,9 @@ namespace MgdDbg.Snoop.Forms
         private System.Windows.Forms.PropertyGrid   m_pgProps;
         private System.Windows.Forms.Button         m_bnOK;
         private System.Windows.Forms.Button         m_bnCancel;
-        private System.Windows.Forms.ContextMenu    m_mnuContext;
-        private System.Windows.Forms.MenuItem       m_mnuItemShowObjInfo;
-        private System.Windows.Forms.MenuItem       m_mnuItemShowClassInfo;
+        private System.Windows.Forms.ContextMenuStrip    m_mnuContext;
+        private System.Windows.Forms.ToolStripMenuItem       m_mnuItemShowObjInfo;
+        private System.Windows.Forms.ToolStripMenuItem       m_mnuItemShowClassInfo;
                 
 		/// <summary>
 		/// Required designer variable.
@@ -85,9 +85,9 @@ namespace MgdDbg.Snoop.Forms
 		private void InitializeComponent()
 		{
             this.m_pgProps = new System.Windows.Forms.PropertyGrid();
-            this.m_mnuContext = new System.Windows.Forms.ContextMenu();
-            this.m_mnuItemShowObjInfo = new System.Windows.Forms.MenuItem();
-            this.m_mnuItemShowClassInfo = new System.Windows.Forms.MenuItem();
+            this.m_mnuContext = new System.Windows.Forms.ContextMenuStrip();
+            this.m_mnuItemShowObjInfo = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_mnuItemShowClassInfo = new System.Windows.Forms.ToolStripMenuItem();
             this.m_bnOK = new System.Windows.Forms.Button();
             this.m_bnCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
@@ -98,7 +98,7 @@ namespace MgdDbg.Snoop.Forms
                 | System.Windows.Forms.AnchorStyles.Left) 
                 | System.Windows.Forms.AnchorStyles.Right);
             this.m_pgProps.CommandsVisibleIfAvailable = true;
-            this.m_pgProps.ContextMenu = this.m_mnuContext;
+            this.m_pgProps.ContextMenuStrip = this.m_mnuContext;
             this.m_pgProps.Cursor = System.Windows.Forms.Cursors.Hand;
             this.m_pgProps.LargeButtons = false;
             this.m_pgProps.LineColor = System.Drawing.SystemColors.ScrollBar;
@@ -113,20 +113,22 @@ namespace MgdDbg.Snoop.Forms
             // 
             // m_mnuContext
             // 
-            this.m_mnuContext.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            MenuStrip ms = new MenuStrip();
+            ms.Items.AddRange(new System.Windows.Forms.ToolStripMenuItem[] {
                                                                                          this.m_mnuItemShowObjInfo,
                                                                                          this.m_mnuItemShowClassInfo});
-            this.m_mnuContext.Popup += new System.EventHandler(this.OnMenuContextPopup);
+            this.m_mnuContext.Opening += new System.ComponentModel.CancelEventHandler(this.OnMenuContextPopup);
+            this.ContextMenuStrip = m_mnuContext;
             // 
             // m_mnuItemShowObjInfo
             // 
-            this.m_mnuItemShowObjInfo.Index = 0;
+            //this.m_mnuItemShowObjInfo.Index = 0;
             this.m_mnuItemShowObjInfo.Text = "Show Object Info...";
             this.m_mnuItemShowObjInfo.Click += new System.EventHandler(this.OnShowObjInfo);
             // 
             // m_mnuItemShowClassInfo
             // 
-            this.m_mnuItemShowClassInfo.Index = 1;
+            //this.m_mnuItemShowClassInfo.Index = 1;
             this.m_mnuItemShowClassInfo.Text = "Show Class Info...";
             this.m_mnuItemShowClassInfo.Click += new System.EventHandler(this.OnShowClassInfo);
             // 

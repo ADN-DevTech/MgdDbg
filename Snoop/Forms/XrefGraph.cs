@@ -44,8 +44,8 @@ namespace MgdDbg.Snoop.Forms
         protected System.Windows.Forms.ColumnHeader     m_lvCol_label;
         protected System.Windows.Forms.ColumnHeader     m_lvCol_value;
         protected System.Windows.Forms.TreeView         m_tvObjs;
-        protected System.Windows.Forms.MenuItem         m_mnuItemBrowseReflection;
-        protected System.Windows.Forms.ContextMenu      m_cntxMenuTree;
+        protected System.Windows.Forms.ToolStripMenuItem         m_mnuItemBrowseReflection;
+        protected System.Windows.Forms.ContextMenuStrip      m_cntxMenuTree;
        
         protected Snoop.Collectors.Objects              m_snoopCollector = new Snoop.Collectors.Objects();
         protected AcDb.XrefGraph                        m_xrefGraph;
@@ -102,8 +102,8 @@ namespace MgdDbg.Snoop.Forms
 		InitializeComponent()
 		{
             this.m_tvObjs = new System.Windows.Forms.TreeView();
-            this.m_cntxMenuTree = new System.Windows.Forms.ContextMenu();
-            this.m_mnuItemBrowseReflection = new System.Windows.Forms.MenuItem();
+            this.m_cntxMenuTree = new System.Windows.Forms.ContextMenuStrip();
+            this.m_mnuItemBrowseReflection = new System.Windows.Forms.ToolStripMenuItem();
             this.m_lvData = new System.Windows.Forms.ListView();
             this.m_lvCol_label = new System.Windows.Forms.ColumnHeader();
             this.m_lvCol_value = new System.Windows.Forms.ColumnHeader();
@@ -114,7 +114,7 @@ namespace MgdDbg.Snoop.Forms
             // 
             this.m_tvObjs.Anchor = ((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
                 | System.Windows.Forms.AnchorStyles.Left);
-            this.m_tvObjs.ContextMenu = this.m_cntxMenuTree;
+            this.m_tvObjs.ContextMenuStrip = this.m_cntxMenuTree;
             this.m_tvObjs.HideSelection = false;
             this.m_tvObjs.ImageIndex = -1;
             this.m_tvObjs.Location = new System.Drawing.Point(16, 16);
@@ -126,12 +126,16 @@ namespace MgdDbg.Snoop.Forms
             // 
             // m_cntxMenuTree
             // 
-            this.m_cntxMenuTree.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+
+
+            var ms = new MenuStrip();
+            ms.Items.AddRange(new System.Windows.Forms.ToolStripMenuItem[] {
                                                                                            this.m_mnuItemBrowseReflection});
+            this.ContextMenuStrip = m_cntxMenuTree;
             // 
             // m_mnuItemBrowseReflection
             // 
-            this.m_mnuItemBrowseReflection.Index = 0;
+            //this.m_mnuItemBrowseReflection.Index = 0;
             this.m_mnuItemBrowseReflection.Text = "Browse Using Reflection...";
             this.m_mnuItemBrowseReflection.Click += new System.EventHandler(this.ContextMenuClick_BrowseReflection);
             // 
