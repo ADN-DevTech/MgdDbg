@@ -45,6 +45,9 @@ namespace MgdDbg.Snoop.Forms {
 
         private Snoop.Collectors.Objects m_snoopCollectorObjs = new MgdDbg.Snoop.Collectors.Objects();
 
+        //Madhukar: Thread.Abort is deprecated use CancellationTokenSource.
+        private CancellationTokenSource m_cts = new CancellationTokenSource();
+
         private ArrayList m_classArray       = new ArrayList();
         private ArrayList m_placedNodes      = new ArrayList();
         private ArrayList m_treeNodes        = new ArrayList();
@@ -282,27 +285,33 @@ namespace MgdDbg.Snoop.Forms {
         private void
         BuildClassTree ()
         {
-            // now hook them up in the tree
-            m_placedNodes.Clear();
-            m_treeNodes.Clear();
+            //Madhu: Check for CancellationToken.IsCancellationRequested to exit gracefully
+            while (!m_cts.Token.IsCancellationRequested)
+            {
+                // now hook them up in the tree
+                m_placedNodes.Clear();
+                m_treeNodes.Clear();
 
-            m_placedNodes.Add(null);      // add in root node
-            m_treeNodes.Add(null);
+                m_placedNodes.Add(null);      // add in root node
+                m_treeNodes.Add(null);
 
-            TreeNode parentNode = null;
-            TreeNode newNode = null;
-            int index = 0;
+                TreeNode parentNode = null;
+                TreeNode newNode = null;
+                int index = 0;
 
-            while (Regress(ref index, ref parentNode)) {
-                newNode = AddTreeItem((System.Type)m_classArray[index], parentNode);
-                
-                m_treeNodes.Add(newNode);
-                m_placedNodes.Add(m_classArray[index]);
-                m_classArray.RemoveAt(index);
+                while (Regress(ref index, ref parentNode))
+                {
+                    newNode = AddTreeItem((System.Type)m_classArray[index], parentNode);
+
+                    m_treeNodes.Add(newNode);
+                    m_placedNodes.Add(m_classArray[index]);
+                    m_classArray.RemoveAt(index);
+                }
+
+                m_classArray.Clear();
+                this.Invoke(new EventHandler(UpdateUIEnd));
             }
-            
-            m_classArray.Clear();
-            this.Invoke(new EventHandler(UpdateUIEnd));
+           
         }
 
         
@@ -836,7 +845,10 @@ namespace MgdDbg.Snoop.Forms {
         {
             if (m_thread != null)
             {
-                m_thread.Abort();
+                //m_thread.Abort();
+                // Signal the thread to exit gracefully
+                m_cts.Cancel();
+
             }
         }
 

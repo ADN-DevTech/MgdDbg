@@ -41,13 +41,13 @@ namespace MgdDbg.Snoop.Forms
         protected ColumnHeader                            m_lvCol_label;
         protected ColumnHeader                            m_lvCol_value;
         protected TreeView                                m_tvObjs;
-        protected MenuItem                                m_mnuItemBrowseReflection;
-        protected ContextMenu                             m_cntxMenu;
+        protected ToolStripMenuItem                                m_mnuItemBrowseReflection;
+        protected ContextMenuStrip                             m_cntxMenu;
        
         protected Snoop.Collectors.Objects                m_snoopCollector          = new Snoop.Collectors.Objects();
         protected System.Object                           m_curObj;
         private   ContextMenuStrip                        listViewContextMenuStrip;
-        private   MenuItem                                m_mnuItemCopy;
+        private   ToolStripMenuItem                                m_mnuItemCopy;
         private   ToolStripMenuItem                       copyToolStripMenuItem;
         private   ToolStrip                               toolStrip1;
         private   System.Drawing.Printing.PrintDocument   m_printDocument;
@@ -116,9 +116,9 @@ namespace MgdDbg.Snoop.Forms
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Objects));
             this.m_tvObjs = new System.Windows.Forms.TreeView();
-            this.m_cntxMenu = new System.Windows.Forms.ContextMenu();
-            this.m_mnuItemCopy = new System.Windows.Forms.MenuItem();
-            this.m_mnuItemBrowseReflection = new System.Windows.Forms.MenuItem();
+            this.m_cntxMenu = new System.Windows.Forms.ContextMenuStrip();
+            this.m_mnuItemCopy = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_mnuItemBrowseReflection = new System.Windows.Forms.ToolStripMenuItem();
             this.m_lvData = new System.Windows.Forms.ListView();
             this.m_lvCol_label = new System.Windows.Forms.ColumnHeader();
             this.m_lvCol_value = new System.Windows.Forms.ColumnHeader();
@@ -140,7 +140,7 @@ namespace MgdDbg.Snoop.Forms
             // 
             this.m_tvObjs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)));
-            this.m_tvObjs.ContextMenu = this.m_cntxMenu;
+            this.m_tvObjs.ContextMenuStrip = this.m_cntxMenu;
             this.m_tvObjs.HideSelection = false;
             this.m_tvObjs.Location = new System.Drawing.Point(12, 37);
             this.m_tvObjs.Name = "m_tvObjs";
@@ -152,19 +152,22 @@ namespace MgdDbg.Snoop.Forms
             // 
             // m_cntxMenu
             // 
-            this.m_cntxMenu.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+
+            MenuStrip ms = new MenuStrip();          
+              ms.Items.AddRange(new System.Windows.Forms.ToolStripMenuItem[] {
             this.m_mnuItemCopy,
             this.m_mnuItemBrowseReflection});
+            this.ContextMenuStrip = m_cntxMenu;
             // 
             // m_mnuItemCopy
             // 
-            this.m_mnuItemCopy.Index = 0;
+            //this.m_mnuItemCopy.Index = 0;
             this.m_mnuItemCopy.Text = "Copy";
             this.m_mnuItemCopy.Click += new System.EventHandler(this.ContextMenuClick_Copy);
             // 
             // m_mnuItemBrowseReflection
             // 
-            this.m_mnuItemBrowseReflection.Index = 1;
+            //this.m_mnuItemBrowseReflection.Index = 1;
             this.m_mnuItemBrowseReflection.Text = "Browse Using Reflection...";
             this.m_mnuItemBrowseReflection.Click += new System.EventHandler(this.ContextMenuClick_BrowseReflection);
             // 

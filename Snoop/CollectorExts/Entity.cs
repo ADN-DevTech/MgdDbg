@@ -103,7 +103,7 @@ namespace MgdDbg.Snoop.CollectorExts {
                 else if (e.ErrorStatus == Autodesk.AutoCAD.Runtime.ErrorStatus.NullExtents)
                     data.Add(new Snoop.Data.Exception("Geom extents", e));
                 else
-                    throw e;
+                    throw;
             }
 
             try {
@@ -113,7 +113,7 @@ namespace MgdDbg.Snoop.CollectorExts {
                 if (e.ErrorStatus == Autodesk.AutoCAD.Runtime.ErrorStatus.NotApplicable)
                     data.Add(new Snoop.Data.Exception("Compound object transform", e));
                 else
-                    throw e;
+                    throw;
             }
   
             // branch to all known major sub-classes
@@ -340,7 +340,7 @@ namespace MgdDbg.Snoop.CollectorExts {
                 if (e.ErrorStatus == Autodesk.AutoCAD.Runtime.ErrorStatus.NotApplicable)
                     data.Add(new Snoop.Data.Exception("Start point", e));
                 else
-                    throw e;
+                    throw;
             }
 
             try {
@@ -350,7 +350,7 @@ namespace MgdDbg.Snoop.CollectorExts {
                 if (e.ErrorStatus == Autodesk.AutoCAD.Runtime.ErrorStatus.NotApplicable)
                     data.Add(new Snoop.Data.Exception("End point", e));
                 else
-                    throw e;
+                    throw;
             }
 
             data.Add(new Snoop.Data.Bool("Is periodic", crv.IsPeriodic));
@@ -363,7 +363,7 @@ namespace MgdDbg.Snoop.CollectorExts {
                 if (e.ErrorStatus == Autodesk.AutoCAD.Runtime.ErrorStatus.NotApplicable)
                     data.Add(new Snoop.Data.Exception("Spline", e));
                 else
-                    throw e;
+                    throw;
             }
 
             // branch to all known major sub-classes
@@ -636,7 +636,7 @@ namespace MgdDbg.Snoop.CollectorExts {
                 if (e.ErrorStatus == Autodesk.AutoCAD.Runtime.ErrorStatus.NotApplicable)
                     data.Add(new Snoop.Data.Exception("Start fit tangent", e));
                 else
-                    throw e;
+                    throw;
             }
 
             try {
@@ -646,7 +646,7 @@ namespace MgdDbg.Snoop.CollectorExts {
                 if (e.ErrorStatus == Autodesk.AutoCAD.Runtime.ErrorStatus.NotApplicable)
                     data.Add(new Snoop.Data.Exception("End fit tangent", e));
                 else
-                    throw e;
+                    throw;
             }
             
             data.Add(new Snoop.Data.Bool("Has fit data", spline.HasFitData));
@@ -658,7 +658,7 @@ namespace MgdDbg.Snoop.CollectorExts {
                 if (e.ErrorStatus == Autodesk.AutoCAD.Runtime.ErrorStatus.NotApplicable)
                     data.Add(new Snoop.Data.Exception("Fit data", e));
                 else
-                    throw e;
+                    throw;
             }
 
             try {
@@ -668,7 +668,7 @@ namespace MgdDbg.Snoop.CollectorExts {
                 if (e.ErrorStatus == Autodesk.AutoCAD.Runtime.ErrorStatus.NotApplicable)
                     data.Add(new Snoop.Data.Exception("Fit tolerance", e));
                 else
-                    throw e;
+                   throw;
             }
 
             data.Add(new Snoop.Data.Object("Nurbs data", spline.NurbsData));
@@ -969,7 +969,7 @@ namespace MgdDbg.Snoop.CollectorExts {
                 if (e.ErrorStatus == Autodesk.AutoCAD.Runtime.ErrorStatus.NotApplicable)
                     data.Add(new Snoop.Data.Exception("Background scale factor", e));
                 else
-                    throw e;
+                    throw;
             }
 
             data.Add(new Snoop.Data.Object("Background transparency", mtext.Transparency));

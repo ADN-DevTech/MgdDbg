@@ -166,7 +166,7 @@ namespace MgdDbg.Test
                         if (e.ErrorStatus == Autodesk.AutoCAD.Runtime.ErrorStatus.NotApplicable) 
                             m_ed.WriteMessage("\nSTART POINT: Not Applicable");
                         else
-                            throw e;
+                            throw;
                     }
 
                         // get EndPoint (if appliacable) and make a point entity in Yellow
@@ -180,7 +180,7 @@ namespace MgdDbg.Test
                         if (e.ErrorStatus == Autodesk.AutoCAD.Runtime.ErrorStatus.NotApplicable)
                             m_ed.WriteMessage("\nEND POINT: Not Applicable");
                         else
-                            throw e;
+                            throw;
                     }
                     
                     tr.Commit();
@@ -212,7 +212,7 @@ namespace MgdDbg.Test
                         if (e.ErrorStatus == Autodesk.AutoCAD.Runtime.ErrorStatus.NotApplicable) 
                             m_ed.WriteMessage("\nSTART PARAM: Not Applicable");
                         else
-                            throw e;
+                            throw;
                     }
 
                     try {
@@ -224,7 +224,7 @@ namespace MgdDbg.Test
                         if (e.ErrorStatus == Autodesk.AutoCAD.Runtime.ErrorStatus.NotApplicable)
                             m_ed.WriteMessage("\nEND PARAM: Not Applicable");
                         else
-                            throw e;
+                            throw;
                     }
                     
                     tr.Commit();
@@ -911,7 +911,7 @@ namespace MgdDbg.Test
                         if (e.ErrorStatus == Autodesk.AutoCAD.Runtime.ErrorStatus.NotApplicable) 
                             m_ed.WriteMessage("\nSPLINE: Not Applicable");
                         else
-                            throw e;
+                            throw;
                     }
                     
                     tr.Commit();
@@ -971,7 +971,7 @@ namespace MgdDbg.Test
                 if (e.ErrorStatus == Autodesk.AutoCAD.Runtime.ErrorStatus.NotApplicable) 
                     m_ed.WriteMessage("\nParam Interval: Not Applicable");
                 else
-                    throw e;
+                    throw;
             }
         }
         

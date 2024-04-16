@@ -39,9 +39,9 @@ namespace MgdDbg
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.ContextMenu contextMenu1;
-        private System.Windows.Forms.MenuItem menuItem1;
-        private System.Windows.Forms.MenuItem menuItem2;
+        private System.Windows.Forms.ContextMenuStrip contextMenu1;
+        private System.Windows.Forms.ToolStripMenuItem menuItem1;
+        private System.Windows.Forms.ToolStripMenuItem menuItem2;
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
@@ -86,9 +86,9 @@ namespace MgdDbg
             this.button1 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.button2 = new System.Windows.Forms.Button();
-            this.contextMenu1 = new System.Windows.Forms.ContextMenu();
-            this.menuItem1 = new System.Windows.Forms.MenuItem();
-            this.menuItem2 = new System.Windows.Forms.MenuItem();
+            this.contextMenu1 = new System.Windows.Forms.ContextMenuStrip();
+            this.menuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.m_tabCtrl.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -110,7 +110,7 @@ namespace MgdDbg
             // 
             // tabPage1
             // 
-            this.tabPage1.ContextMenu = this.contextMenu1;
+            this.tabPage1.ContextMenuStrip = this.contextMenu1;
             this.tabPage1.Controls.AddRange(new System.Windows.Forms.Control[] {
                                                                                    this.button1});
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
@@ -149,20 +149,24 @@ namespace MgdDbg
             // 
             // contextMenu1
             // 
-            this.contextMenu1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+
+            var ms = new MenuStrip();
+
+            ms.Items.AddRange(new System.Windows.Forms.ToolStripMenuItem[] {
                                                                                          this.menuItem1,
                                                                                          this.menuItem2});
-            this.contextMenu1.Popup += new System.EventHandler(this.contextMenu1_Popup);
+            this.ContextMenuStrip = contextMenu1;
+            this.contextMenu1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenu1_Popup);
             // 
             // menuItem1
             // 
-            this.menuItem1.Index = 0;
+           // this.menuItem1.Index = 0;
             this.menuItem1.Text = "Add to Browse Set";
             this.menuItem1.Click += new System.EventHandler(this.menuItem1_Click);
             // 
             // menuItem2
             // 
-            this.menuItem2.Index = 1;
+           // this.menuItem2.Index = 1;
             this.menuItem2.Text = "Show Object Id Info...";
             this.menuItem2.Click += new System.EventHandler(this.menuItem2_Click);
             // 
@@ -190,7 +194,7 @@ namespace MgdDbg
             MessageBox.Show("I came from Tab 2");
         }
 
-        private void contextMenu1_Popup(object sender, System.EventArgs e) {
+        private void contextMenu1_Popup(object sender, System.ComponentModel.CancelEventArgs e) {
             MessageBox.Show(sender.ToString());
         }
 

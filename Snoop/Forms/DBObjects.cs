@@ -44,20 +44,20 @@ namespace MgdDbg.Snoop.Forms
         protected System.Windows.Forms.ColumnHeader         m_lvCol_label;
         protected System.Windows.Forms.ColumnHeader         m_lvCol_value;
         protected System.Windows.Forms.TreeView             m_tvObjs;
-        protected System.Windows.Forms.ContextMenu          m_cntxMenuObjId;
-        protected System.Windows.Forms.MenuItem             m_mnuItemObjectDbInfo;
-        protected System.Windows.Forms.MenuItem             m_mnuItemBrowseReflection;
-        protected System.Windows.Forms.MenuItem             m_mnuItemSeparator1;
-        protected System.Windows.Forms.MenuItem             m_mnuItemAddToSnoopObjSet;
-        protected System.Windows.Forms.MenuItem             m_mnuItemRemoveFromSnoopObjSet;
-        protected System.Windows.Forms.MenuItem             m_mnuItemShowSnoopObjSet;
+        protected System.Windows.Forms.ContextMenuStrip          m_cntxMenuObjId;
+        protected System.Windows.Forms.ToolStripMenuItem             m_mnuItemObjectDbInfo;
+        protected System.Windows.Forms.ToolStripMenuItem             m_mnuItemBrowseReflection;
+        protected System.Windows.Forms.ToolStripMenuItem             m_mnuItemSeparator1;
+        protected System.Windows.Forms.ToolStripMenuItem             m_mnuItemAddToSnoopObjSet;
+        protected System.Windows.Forms.ToolStripMenuItem             m_mnuItemRemoveFromSnoopObjSet;
+        protected System.Windows.Forms.ToolStripMenuItem             m_mnuItemShowSnoopObjSet;
        
         protected Snoop.Collectors.Objects                  m_snoopCollector           = new Snoop.Collectors.Objects();
         protected AcDb.ObjectId                             m_curObjId;
         protected TransactionHelper                         m_trans                    = null;
         private   ContextMenuStrip                          listViewContextMenuStrip;
         private   ToolStripMenuItem                         copyToolStripMenuItem;
-        private   MenuItem                                  m_mnuItemCopy;
+        private   ToolStripMenuItem                                  m_mnuItemCopy;
         private   ToolStrip                                 toolStrip1;
         private   ToolStripButton                           toolStripButton1;
         private   ToolStripButton                           toolStripButton2;
@@ -135,14 +135,14 @@ namespace MgdDbg.Snoop.Forms
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DBObjects));
             this.m_tvObjs = new System.Windows.Forms.TreeView();
-            this.m_cntxMenuObjId = new System.Windows.Forms.ContextMenu();
-            this.m_mnuItemCopy = new System.Windows.Forms.MenuItem();
-            this.m_mnuItemObjectDbInfo = new System.Windows.Forms.MenuItem();
-            this.m_mnuItemBrowseReflection = new System.Windows.Forms.MenuItem();
-            this.m_mnuItemSeparator1 = new System.Windows.Forms.MenuItem();
-            this.m_mnuItemAddToSnoopObjSet = new System.Windows.Forms.MenuItem();
-            this.m_mnuItemRemoveFromSnoopObjSet = new System.Windows.Forms.MenuItem();
-            this.m_mnuItemShowSnoopObjSet = new System.Windows.Forms.MenuItem();
+            this.m_cntxMenuObjId = new System.Windows.Forms.ContextMenuStrip();
+            this.m_mnuItemCopy = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_mnuItemObjectDbInfo = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_mnuItemBrowseReflection = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_mnuItemSeparator1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_mnuItemAddToSnoopObjSet = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_mnuItemRemoveFromSnoopObjSet = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_mnuItemShowSnoopObjSet = new System.Windows.Forms.ToolStripMenuItem();
             this.m_lvData = new System.Windows.Forms.ListView();
             this.m_lvCol_label = new System.Windows.Forms.ColumnHeader();
             this.m_lvCol_value = new System.Windows.Forms.ColumnHeader();
@@ -164,7 +164,7 @@ namespace MgdDbg.Snoop.Forms
             // 
             this.m_tvObjs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)));
-            this.m_tvObjs.ContextMenu = this.m_cntxMenuObjId;
+            this.m_tvObjs.ContextMenuStrip = this.m_cntxMenuObjId;
             this.m_tvObjs.HideSelection = false;
             this.m_tvObjs.Location = new System.Drawing.Point(20, 41);
             this.m_tvObjs.Name = "m_tvObjs";
@@ -176,54 +176,61 @@ namespace MgdDbg.Snoop.Forms
             // 
             // m_cntxMenuObjId
             // 
-            this.m_cntxMenuObjId.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            MenuStrip ms  = new MenuStrip();           
+
+
+            this.ContextMenuStrip = m_cntxMenuObjId;
+     
+            ms.Items.AddRange(new System.Windows.Forms.ToolStripMenuItem[] {
             this.m_mnuItemCopy,
             this.m_mnuItemObjectDbInfo,
             this.m_mnuItemBrowseReflection,
             this.m_mnuItemSeparator1,
             this.m_mnuItemAddToSnoopObjSet,
             this.m_mnuItemRemoveFromSnoopObjSet,
-            this.m_mnuItemShowSnoopObjSet});
-            this.m_cntxMenuObjId.Popup += new System.EventHandler(this.OnContextMenuPopup);
+            this.m_mnuItemShowSnoopObjSet
+            });
+
+            this.m_cntxMenuObjId.Opening += new System.ComponentModel.CancelEventHandler(this.OnContextMenuPopup);
             // 
             // m_mnuItemCopy
             // 
-            this.m_mnuItemCopy.Index = 0;
+           
             this.m_mnuItemCopy.Text = "Copy";
             this.m_mnuItemCopy.Click += new System.EventHandler(this.ContextMenuClick_Copy);
             // 
             // m_mnuItemObjectDbInfo
             // 
-            this.m_mnuItemObjectDbInfo.Index = 1;
+            
             this.m_mnuItemObjectDbInfo.Text = "Show ObjectID Info...";
             this.m_mnuItemObjectDbInfo.Click += new System.EventHandler(this.ContextMenuClick_ObjIdInfo);
             // 
             // m_mnuItemBrowseReflection
             // 
-            this.m_mnuItemBrowseReflection.Index = 2;
+            
             this.m_mnuItemBrowseReflection.Text = "Browse Using Reflection...";
             this.m_mnuItemBrowseReflection.Click += new System.EventHandler(this.ContextMenuClick_BrowseReflection);
             // 
             // m_mnuItemSeparator1
             // 
-            this.m_mnuItemSeparator1.Index = 3;
+           
             this.m_mnuItemSeparator1.Text = "-";
             // 
             // m_mnuItemAddToSnoopObjSet
             // 
-            this.m_mnuItemAddToSnoopObjSet.Index = 4;
+           
             this.m_mnuItemAddToSnoopObjSet.Text = "Add To Snoop Object Set";
             this.m_mnuItemAddToSnoopObjSet.Click += new System.EventHandler(this.ContextMenuClick_AddToSnoopObjSet);
             // 
             // m_mnuItemRemoveFromSnoopObjSet
             // 
-            this.m_mnuItemRemoveFromSnoopObjSet.Index = 5;
+           
             this.m_mnuItemRemoveFromSnoopObjSet.Text = "Remove From Snoop Object Set";
             this.m_mnuItemRemoveFromSnoopObjSet.Click += new System.EventHandler(this.ContextMenuClick_RemoveFromSnoopObjSet);
             // 
             // m_mnuItemShowSnoopObjSet
             // 
-            this.m_mnuItemShowSnoopObjSet.Index = 6;
+            
             this.m_mnuItemShowSnoopObjSet.Text = "Show Snoop Object Set...";
             this.m_mnuItemShowSnoopObjSet.Click += new System.EventHandler(this.ContextMenuClick_ShowSnoopObjSet);
             // 
@@ -559,7 +566,7 @@ namespace MgdDbg.Snoop.Forms
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void
-        OnContextMenuPopup(object sender, System.EventArgs e)
+        OnContextMenuPopup(object sender, System.ComponentModel.CancelEventArgs e)
         {
             bool enabled = (Snoop.Utils.CurrentSnoopSet == null) ? false : true;
             m_mnuItemAddToSnoopObjSet.Enabled = enabled;

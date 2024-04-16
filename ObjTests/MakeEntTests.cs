@@ -142,9 +142,9 @@ namespace MgdDbg.Test
                 Utils.Db.TransformToWcs(circ, m_db);
                 Utils.SymTbl.AddToCurrentSpaceAndClose(circ, m_db);
             }
-            catch (System.Exception e) {
-                    // maybe we want to do something here, maybe not?
-                throw e;
+            catch (System.Exception) {
+                // maybe we want to do something here, maybe not?                
+                throw;
             }
             finally {
                 if (circ != null)
@@ -179,10 +179,10 @@ namespace MgdDbg.Test
                 Utils.Db.TransformToWcs(solid, m_db);
                 Utils.SymTbl.AddToCurrentSpaceAndClose(solid, m_db);
             }
-            catch (System.Exception e)
+            catch (System.Exception)
             {
                 // maybe we want to do something here, maybe not?
-                throw e;
+                throw;
             }
             finally
             {
