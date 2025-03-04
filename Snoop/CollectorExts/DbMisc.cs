@@ -451,7 +451,7 @@ namespace MgdDbg.Snoop.CollectorExts
                     data.Add(new Snoop.Data.String(dxfCodeStr, (string)tmpVal.Value));
                 }
                 else if ((typeCode == 5) || (typeCode == 105)) {
-                    dxfCodeStr = string.Format("{0:d}    (handle/string", typeCode);
+                    dxfCodeStr = string.Format("{0:d}    (handle/string)", typeCode);
                     data.Add(new Snoop.Data.String(dxfCodeStr, (string)tmpVal.Value));
                 }
                 else if ((typeCode >= 10) && (typeCode <= 17)) {
@@ -473,7 +473,7 @@ namespace MgdDbg.Snoop.CollectorExts
                 }
                 else if ((typeCode > 90) && (typeCode <= 99)) {
                     dxfCodeStr = string.Format("{0:d}    (long)", typeCode);
-                    data.Add(new Snoop.Data.Int(dxfCodeStr, (int)(long)tmpVal.Value));
+                    data.Add(new Snoop.Data.Int(dxfCodeStr, (int)tmpVal.Value));
                 }
                 else if (typeCode == 100) {
                     dxfCodeStr = string.Format("{0:d}    (sub-class marker/string)", typeCode);
