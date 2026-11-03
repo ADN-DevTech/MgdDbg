@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net8.0-windows</TargetFramework>
+    <TargetFrameworks>net8.0-windows;net10.0-windows</TargetFrameworks>
       <!--
       Madhukar
       -->
@@ -135,8 +135,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="AutoCAD.NET" Version="25.0.1" />
-    <PackageReference Include="AutoCAD.NET.Model" Version="25.0.0" />
+    <PackageReference Include="AutoCAD.NET" Version="25.0.1" Condition="'$(TargetFramework)'=='net8.0-windows'" />
+    <PackageReference Include="AutoCAD.NET.Model" Version="25.0.0" Condition="'$(TargetFramework)'=='net8.0-windows'" />
+    <PackageReference Include="AutoCAD.NET" Version="26.0.0" Condition="'$(TargetFramework)'=='net10.0-windows'" />
+    <PackageReference Include="AutoCAD.NET.Model" Version="26.0.0" Condition="'$(TargetFramework)'=='net10.0-windows'" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="ObjTests\TestFramework\MgdDbgTestForm.resx">
