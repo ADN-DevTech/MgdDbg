@@ -908,7 +908,8 @@ namespace MgdDbg.Test
                         Utils.SymTbl.AddToCurrentSpace(newSpline, m_db, tr);
                     }
                     catch (Autodesk.AutoCAD.Runtime.Exception e) {
-                        if (e.ErrorStatus == Autodesk.AutoCAD.Runtime.ErrorStatus.NotApplicable) 
+                        if (e.ErrorStatus == Autodesk.AutoCAD.Runtime.ErrorStatus.NotApplicable ||
+                            e.ErrorStatus == Autodesk.AutoCAD.Runtime.ErrorStatus.NotImplementedYet)
                             m_ed.WriteMessage("\nSPLINE: Not Applicable");
                         else
                             throw;
